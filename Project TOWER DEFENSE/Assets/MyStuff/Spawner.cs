@@ -16,6 +16,14 @@ public class Spawner : MonoBehaviour
     int currentWave = 1;
     int deadEnemies = 0;
 
+    public Transform playerTransform;
+
+
+    /*
+     * ==================================================================
+     * Coroutines et fonctions (sauf wave qui est tout en bas
+     * ==================================================================
+     */
     //Pour chaque ennemi qu'on veut faire spawn, le fait apparaître, l'ajoute à la liste et attend 0.5 secondes avant le suivant.
     IEnumerator SpawnBase(int ammount)
     {
@@ -42,6 +50,17 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    //Fonction pour reset la position du joueur
+    void ResetPlayerPosition()
+    {
+        playerTransform.position = new Vector3 (cameraposition.position.x, 0,0);
+    }
+
+    /*
+     * ==================================================================
+     * En jeu
+     * ==================================================================
+     */
     //Active la gestion des vagues dans le start.
     private void Start()
     {
@@ -61,6 +80,10 @@ public class Spawner : MonoBehaviour
             StartCoroutine(SpawnShield(1));
         }
 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            ResetPlayerPosition();
+        }
         //Check si la vague actuelle a été remportée par le joueur et si oui passe à la suivante.
         deadEnemies = 0;
         foreach (GameObject obj in wave)
@@ -85,11 +108,13 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
         }
+        ResetPlayerPosition ();
         StartCoroutine(SpawnShield(1));
         while (currentWave != 3)
         {
             yield return null;
         }
+        ResetPlayerPosition();
         Debug.Log("Skibidi toilets");
     }
 }

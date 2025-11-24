@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b55d1dcd947ce942a1625f37f65205d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShieldEnemy
-  hp: 2
+  hp: 1
   speed: 2
   knockback: 9
   knocklenght: 200

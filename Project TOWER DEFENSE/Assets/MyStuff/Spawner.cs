@@ -103,18 +103,46 @@ public class Spawner : MonoBehaviour
     //Gère les vagues d'ennemis
     IEnumerator Wave()
     {
-        StartCoroutine(SpawnBase(2));
+        StartCoroutine(SpawnBase(3));
+
+
         while (currentWave != 2)
         {
             yield return null;
         }
         ResetPlayerPosition ();
         StartCoroutine(SpawnShield(1));
+
+
         while (currentWave != 3)
         {
             yield return null;
         }
+        ResetPlayerPosition ();
+        StartCoroutine(SpawnBase(2));
+        StartCoroutine(SpawnShield(1));
+
+        while (currentWave != 4)
+        {
+            yield return null;
+        }
         ResetPlayerPosition();
-        Debug.Log("Skibidi toilets");
+        StartCoroutine(SpawnBase(1));
+        StartCoroutine(SpawnShield(2));
+
+        while (currentWave != 5)
+        {
+            yield return null;
+        }
+        ResetPlayerPosition();
+        StartCoroutine(SpawnBase(3));
+
+        while (currentWave != 6)
+        {
+            yield return null;
+        }
+        ResetPlayerPosition();
+        StartCoroutine(SpawnBase(1));
+        StartCoroutine(SpawnShield(2));
     }
 }

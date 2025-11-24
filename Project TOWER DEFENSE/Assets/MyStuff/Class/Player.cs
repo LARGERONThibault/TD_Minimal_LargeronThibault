@@ -10,8 +10,9 @@ public class Player : MonoBehaviour
     public int might;
     public float reloadtime;
     bool canmove = true;
-    bool canshoot = true;
+    public bool canshoot = true;
     public GameObject bullet;
+    public Coroutine reload = null;
 
     //Fonction pour faire se déplacer le joueur sur la droite s'il peut bouger.
     public void Move()
@@ -43,25 +44,40 @@ public class Player : MonoBehaviour
 
 
     //Coroutine qui gère le temps de rechargement des projectiles.
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         canshoot = false;
         yield return new WaitForSeconds(reloadtime);
         canshoot = true;
+        reload = null;
+    }
+
+    public void ImmediateResetReload()
+    {
+        
+        if (reload != null)
+        {
+            
+            StopCoroutine(reload);
+         canshoot = true;
+        }
     }
 
     void Update()
     {
         //Déplace le joueur automatiquement.
         Move();
-
-        //TIR COMME UN GROS COWBOY YEEHAW
+        Debug.Log(reload);
+        //Tir
         if (Input.GetKeyDown(KeyCode.Q) && canshoot)
         {
             float playerx = transform.position.x;
             Vector3 spawnpoint = new Vector3(playerx+1.1f, 0, 0);
             Instantiate(bullet, spawnpoint, Quaternion.identity);
-            StartCoroutine(Reload());
+            reload = StartCoroutine(Reload());
         }
+
+        if(Input.GetKeyDown(KeyCode.U)) ImmediateResetReload();
+
     }
 }

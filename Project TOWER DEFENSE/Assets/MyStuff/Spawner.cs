@@ -17,6 +17,7 @@ public class Spawner : MonoBehaviour
     int deadEnemies = 0;
 
     public Transform playerTransform;
+    public GameObject player;
 
 
     /*
@@ -54,6 +55,8 @@ public class Spawner : MonoBehaviour
     void ResetPlayerPosition()
     {
         playerTransform.position = new Vector3 (cameraposition.position.x, 0,0);
+        //Debug.Log(player.GetComponent<Player>());
+        player.GetComponent<Player>().ImmediateResetReload();
     }
 
     /*

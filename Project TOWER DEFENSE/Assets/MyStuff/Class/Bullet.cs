@@ -24,28 +24,34 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         StartCoroutine(AUTODESTRUCTION());
+        background = GameObject.Find("Background");
     }
 
     //Inflige des dégâts et la supprime quand il y a collision.
     void OnTriggerEnter(Collider other)
     {
-        
-        if (other.GetComponent<Enemy>().shield == false)
+        Enemy myEnemy = other.GetComponent<Enemy>();
+        Debug.Log(other);
+        if (other != null && myEnemy != null)
         {
-            other.gameObject.GetComponent<Enemy>().hp -= damage;
+            if (other.GetComponent<Enemy>() == true && other.GetComponent<Enemy>().shield == false)
+            {
+                other.gameObject.GetComponent<Enemy>().hp -= damage;
+            }
+            else if (other.GetComponent<Enemy>() == true && other.GetComponent<Enemy>().shield == true)
+            {
+                other.gameObject.GetComponent<Enemy>().shield = false;
+                other.gameObject.GetComponent<MeshRenderer>().material = shieldoff;
+            }
+            StartCoroutine(Freeze(0.2f));
+            StartCoroutine(other.gameObject.GetComponent<Enemy>().EnemyKnockbacked());
+            GetComponent<Renderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
         }
-        else 
-        {
-            other.gameObject.GetComponent<Enemy>().shield = false;
-            other.gameObject.GetComponent<MeshRenderer>().material = shieldoff;
-        }
-        StartCoroutine(Freeze(0.2f));
-        StartCoroutine(other.gameObject.GetComponent<Enemy>().EnemyKnockbacked());
-        GetComponent<Renderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
     }
 
     //Effet feedback freeze
+    
     IEnumerator Freeze(float time)
     {
         background.GetComponent<MeshRenderer>().enabled = false;

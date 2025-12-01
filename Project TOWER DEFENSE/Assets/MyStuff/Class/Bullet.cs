@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     public Material shieldoff;
     public GameObject background;
+    public AudioSource audiosource;
 
     //Déplace la munition
     void Update()
@@ -25,6 +26,7 @@ public class Bullet : MonoBehaviour
     {
         StartCoroutine(AUTODESTRUCTION());
         background = GameObject.Find("Background");
+        audiosource = GetComponent<AudioSource>();
     }
 
     //Inflige des dégâts et la supprime quand il y a collision.
@@ -37,11 +39,13 @@ public class Bullet : MonoBehaviour
             if (other.GetComponent<Enemy>() == true && other.GetComponent<Enemy>().shield == false)
             {
                 other.gameObject.GetComponent<Enemy>().hp -= damage;
+                audiosource.Play();
             }
             else if (other.GetComponent<Enemy>() == true && other.GetComponent<Enemy>().shield == true)
             {
                 other.gameObject.GetComponent<Enemy>().shield = false;
                 other.gameObject.GetComponent<MeshRenderer>().material = shieldoff;
+                audiosource.Play();
             }
             StartCoroutine(Freeze(0.2f));
             StartCoroutine(other.gameObject.GetComponent<Enemy>().EnemyKnockbacked());

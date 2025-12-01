@@ -56,7 +56,8 @@ public class Spawner : MonoBehaviour
     {
         playerTransform.position = new Vector3 (cameraposition.position.x, 0,0);
         //Debug.Log(player.GetComponent<Player>());
-        player.GetComponent<Player>().ImmediateResetReload();
+        // player.GetComponent<Player>().ImmediateResetReload();
+        //StartCoroutine(Player.ImmediateResetReload());
     }
 
     /*

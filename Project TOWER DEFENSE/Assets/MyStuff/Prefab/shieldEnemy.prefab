@@ -158,3 +158,4 @@ MonoBehaviour:
   knocklenght: 200
   shield: 1
   attackcooldown: 1
+  material: {fileID: 2100000, guid: 5ae687981a8aec145a07635b49f43a1c, type: 2}

@@ -131,6 +131,7 @@ MonoBehaviour:
   knocklenght: 200
   shield: 0
   attackcooldown: 1
+  material: {fileID: 2100000, guid: 5ae687981a8aec145a07635b49f43a1c, type: 2}
 --- !u!54 &63623988491209782
 Rigidbody:
   m_ObjectHideFlags: 0

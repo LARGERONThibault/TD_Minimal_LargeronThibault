@@ -129,6 +129,7 @@ MonoBehaviour:
   knocklenght: 0
   might: 1
   reloadtime: 0
+  canshoot: 1
   bullet: {fileID: 0}
   swordcooldown: 2
   playerposition: {fileID: 5240919545707103196}
@@ -164,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 8928151521490298682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.49, y: 0, z: 0}
+  m_LocalPosition: {x: 12.697824, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -313,4 +314,5 @@ MonoBehaviour:
   knocklenght: 200
   might: 1
   reloadtime: 1.5
+  canshoot: 1
   bullet: {fileID: 4588051875902553058, guid: 4eebaaf7101f8e1448ec0c4f0267f2dd, type: 3}

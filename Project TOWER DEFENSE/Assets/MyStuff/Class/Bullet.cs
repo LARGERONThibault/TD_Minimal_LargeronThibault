@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
     //Inflige des dégâts et la supprime quand il y a collision.
     void OnTriggerEnter(Collider other)
     {
+        
         if (other.GetComponent<Enemy>().shield == false)
         {
             other.gameObject.GetComponent<Enemy>().hp -= damage;
@@ -37,8 +38,17 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().shield = false;
             other.gameObject.GetComponent<MeshRenderer>().material = shieldoff;
         }
-            StartCoroutine(other.gameObject.GetComponent<Enemy>().EnemyKnockbacked());
+        StartCoroutine(Freeze(0.2f));
+        StartCoroutine(other.gameObject.GetComponent<Enemy>().EnemyKnockbacked());
+        GetComponent<Renderer>().enabled = false;
+    }
 
+    //Effet feedback freeze
+    IEnumerator Freeze(float time)
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = 1f;
         Destroy(gameObject);
     }
 }

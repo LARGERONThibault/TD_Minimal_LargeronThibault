@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public bool shield;
     bool canmove = true;
     public int attackcooldown;
+    public Material material;
     
     //Système de mouvement des ennemis.
     public void Move()
@@ -43,9 +44,19 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Move();
-        if (hp == 0)
+        if (hp <= 0)
         {
-            DestroyImmediate(gameObject);
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        GetComponent<Collider>().enabled = false;
+        canmove = false;
+        speed = 0;
+        GetComponent<MeshRenderer>().material = material;
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 }

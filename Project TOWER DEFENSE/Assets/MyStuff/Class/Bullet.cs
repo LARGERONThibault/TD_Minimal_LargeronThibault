@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public int damage;
     public float speed;
     public Material shieldoff;
+    public GameObject background;
 
     //Déplace la munition
     void Update()
@@ -41,14 +42,17 @@ public class Bullet : MonoBehaviour
         StartCoroutine(Freeze(0.2f));
         StartCoroutine(other.gameObject.GetComponent<Enemy>().EnemyKnockbacked());
         GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 
     //Effet feedback freeze
     IEnumerator Freeze(float time)
     {
+        background.GetComponent<MeshRenderer>().enabled = false;
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1f;
+        background.GetComponent<MeshRenderer>().enabled = true;
         Destroy(gameObject);
     }
 }

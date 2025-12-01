@@ -127,3 +127,4 @@ MonoBehaviour:
   damage: 1
   speed: 20
   shieldoff: {fileID: 2100000, guid: 69e0d5b3676a59e44811d6781974d6ee, type: 2}
+  background: {fileID: 0}

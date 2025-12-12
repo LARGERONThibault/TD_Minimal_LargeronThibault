@@ -42,6 +42,14 @@ public class Player : MonoBehaviour
         StartCoroutine(collision.gameObject.GetComponent<Enemy>().Cooldown());
     }
 
+    //Gère le tir de projectile : instantie une balle à coté du joueur puis lance le rechargement.
+    void Shoot()
+    {
+        float playerx = transform.position.x;
+        Vector3 spawnpoint = new Vector3(playerx + 1.1f, 0, 0);
+        Instantiate(bullet, spawnpoint, Quaternion.identity);
+        reload = StartCoroutine(Reload());
+    }
 
     //Coroutine qui gère le temps de rechargement des projectiles.
     public IEnumerator Reload()
@@ -52,6 +60,7 @@ public class Player : MonoBehaviour
         reload = null;
     }
 
+    //Fonction qui réinitialise instantanément le reload du tir.
     public void ImmediateResetReload()
     {
         
@@ -67,17 +76,13 @@ public class Player : MonoBehaviour
     {
         //Déplace le joueur automatiquement.
         Move();
-        Debug.Log(reload);
-        //Tir
+        //Tir quand A est pressé.
         if (Input.GetKeyDown(KeyCode.Q) && canshoot)
         {
-            float playerx = transform.position.x;
-            Vector3 spawnpoint = new Vector3(playerx+1.1f, 0, 0);
-            Instantiate(bullet, spawnpoint, Quaternion.identity);
-            reload = StartCoroutine(Reload());
+            Shoot();
         }
 
-        if(Input.GetKeyDown(KeyCode.U)) ImmediateResetReload();
+        // if(Input.GetKeyDown(KeyCode.U)) ImmediateResetReload();
 
     }
 }

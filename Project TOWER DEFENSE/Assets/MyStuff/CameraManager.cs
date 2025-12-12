@@ -8,11 +8,11 @@ public class CameraManager : MonoBehaviour
     public int gamedifficulty;
     int speed; 
 
-    //Gameover provisoire
+    //Gameover quui ferme le jeu quand il est déclenché.
     public void Gameover()
     {
         Application.Quit();
-        Debug.Log("Prout");
+        Debug.Log("Gameover");
     }
     //Suit le joueur.
     private void Start()

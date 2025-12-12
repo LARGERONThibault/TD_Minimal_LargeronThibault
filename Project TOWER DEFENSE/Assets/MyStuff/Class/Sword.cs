@@ -9,7 +9,6 @@ public class Sword : Player
     public Transform playerposition;
     public MeshRenderer feedback;
     
-    //Gere les fonctions liées à l'attaque
     //Gere le cooldown de l'attaque
     IEnumerator SwordCooldown()
     {
@@ -18,7 +17,7 @@ public class Sword : Player
         cansword = true;
     }
 
-    //Gere le feedback visuel
+    //Gere le feedback visuel en montrant puis cachant la texture de la hitbox.
     IEnumerator Feedback()
     {
         feedback.enabled = true;

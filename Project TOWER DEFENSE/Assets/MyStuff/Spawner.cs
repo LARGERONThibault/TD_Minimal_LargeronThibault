@@ -74,6 +74,7 @@ public class Spawner : MonoBehaviour
     private void Update()
     {
         //Admin command pour faire spawn un enemmi.
+        /*
         if (Input.GetKeyDown(KeyCode.L))
         {
             StartCoroutine(SpawnBase(1));
@@ -88,6 +89,7 @@ public class Spawner : MonoBehaviour
         {
             ResetPlayerPosition();
         }
+        */
         //Check si la vague actuelle a été remportée par le joueur et si oui passe à la suivante.
         deadEnemies = 0;
         foreach (GameObject obj in wave)
@@ -102,12 +104,13 @@ public class Spawner : MonoBehaviour
             wave.Clear();
             currentWave++;
         }
+
     }
 
     //Gère les vagues d'ennemis
     IEnumerator Wave()
     {
-        StartCoroutine(SpawnBase(3));
+        StartCoroutine(SpawnBase(1));
 
 
         while (currentWave != 2)

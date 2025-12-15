@@ -148,8 +148,7 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
         }
-        ResetPlayerPosition();
-        StartCoroutine(SpawnBase(1));
-        StartCoroutine(SpawnShield(2));
+        ResetPlayerPosition();;
+        StartCoroutine(SpawnShield(3));
     }
 }
